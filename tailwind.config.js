@@ -1,4 +1,4 @@
-﻿/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,9 +11,13 @@ module.exports = {
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
           500: '#3b82f6',
           600: '#2563eb',
           700: '#1d4ed8',
+          800: '#1e40af',
           900: '#1e3a8a'
         },
         secondary: {
@@ -29,7 +33,8 @@ module.exports = {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
-        'bounce-in': 'bounceIn 0.6s ease-out'
+        'bounce-in': 'bounceIn 0.6s ease-out',
+        'rotate-y-2': 'rotateY 0.3s ease-out'
       },
       keyframes: {
         fadeIn: {
@@ -45,7 +50,14 @@ module.exports = {
           '50%': { transform: 'scale(1.05)' },
           '70%': { transform: 'scale(0.9)' },
           '100%': { transform: 'scale(1)', opacity: '1' }
+        },
+        rotateY: {
+          '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(2deg)' }
         }
+      },
+      perspective: {
+        '1000': '1000px'
       }
     }
   },
