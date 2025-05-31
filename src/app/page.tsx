@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
 
 const templates = [
   {
     id: 'modern',
     name: 'Modern Template',
     description: 'Clean and professional design with a modern touch',
-    image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg'
+    image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg',
+    popular: true
   },
   {
     id: 'creative',
@@ -26,39 +28,68 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-primary-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Create Your Professional CV in Minutes
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl">
-            Choose from our professionally designed templates and customize your CV with our easy-to-use editor.
-          </p>
+      <div className="relative bg-primary-600 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 to-primary-600"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+              Create Your Professional CV
+              <span className="block text-primary-200">in Minutes</span>
+            </h1>
+            <p className="text-xl text-primary-100 max-w-2xl mx-auto mb-8">
+              Choose from our professionally designed templates and build your perfect CV with our intuitive editor.
+            </p>
+            <Button
+              size="lg"
+              className="bg-white text-primary-600 hover:bg-primary-50 font-semibold text-lg px-8 py-4"
+              onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Choose Your Template
+            </Button>
+          </div>
+        </div>
+        
+        {/* Abstract Background Pattern */}
+        <div className="absolute inset-y-0 right-0 w-1/2 opacity-10">
+          <div className="absolute inset-0 bg-white transform -skew-x-12"></div>
         </div>
       </div>
 
       {/* Templates Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          Choose Your Template
-        </h2>
+      <div id="templates" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Professional CV Templates
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Select from our collection of professionally designed templates to kickstart your career journey.
+          </p>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {templates.map(template => (
             <Link 
               key={template.id} 
               href={`/editor?template=${template.id}`}
-              className="transform transition-transform hover:scale-105"
+              className="group"
             >
-              <Card className="h-full">
-                <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-t-lg">
+              <Card className="h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                <div className="relative aspect-w-4 aspect-h-3 overflow-hidden rounded-t-lg">
                   <img
                     src={template.image}
                     alt={template.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+                  {template.popular && (
+                    <div className="absolute top-4 right-4 bg-primary-600 text-white text-sm font-medium px-3 py-1 rounded-full">
+                      Popular
+                    </div>
+                  )}
                 </div>
                 <CardHeader>
-                  <CardTitle>{template.name}</CardTitle>
+                  <CardTitle className="text-2xl group-hover:text-primary-600 transition-colors">
+                    {template.name}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">{template.description}</p>
@@ -70,37 +101,73 @@ export default function HomePage() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Our CV Builder?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Create a professional CV in minutes with our easy-to-use tools and features.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="text-center group">
+              <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform group-hover:scale-110 group-hover:rotate-6">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Easy to Use</h3>
-              <p className="text-gray-600">Intuitive editor with real-time preview</p>
+              <h3 className="text-2xl font-semibold mb-3">Easy to Use</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Intuitive editor with real-time preview. No design skills needed.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            
+            <div className="text-center group">
+              <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform group-hover:scale-110 group-hover:rotate-6">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Export to PDF</h3>
-              <p className="text-gray-600">Download your CV in professional PDF format</p>
+              <h3 className="text-2xl font-semibold mb-3">Export to PDF</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Download your CV in professional PDF format, ready to send.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            
+            <div className="text-center group">
+              <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 transform transition-transform group-hover:scale-110 group-hover:rotate-6">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Customizable</h3>
-              <p className="text-gray-600">Personalize your CV to match your style</p>
+              <h3 className="text-2xl font-semibold mb-3">Customizable</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Personalize every aspect of your CV to match your style.
+              </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-primary-900 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Create Your Professional CV?
+          </h2>
+          <p className="text-xl text-primary-200 mb-8 max-w-2xl mx-auto">
+            Join thousands of job seekers who have successfully created their CV with our platform.
+          </p>
+          <Button
+            size="lg"
+            className="bg-white text-primary-600 hover:bg-primary-50 font-semibold text-lg px-8 py-4"
+            onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Get Started Now
+          </Button>
         </div>
       </div>
     </div>
